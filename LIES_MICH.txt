@@ -1,0 +1,43 @@
+Du findest hier zwei Handlungsstränge.
+1) Ein pdf mit ziemlich viel Theorie und Schaltungsbeipielen - Englisch.
+2) Ein daraus abgeleitetes Projekt bestehend aus HW und SW.
+
+Das Projekt ist ein Teilstück aus einer geplanten (aber noch nicht gebauten)
+Fernsteuerung für ein ROV (ich sag' nur Kettwiesl).
+
+Angeschlossen wird ein "uralter" PC-Joystick. Der hat 2 Potis und zwei Taster.
+Als Anschluß dient 25er-Sub-D. Auf der anderen Seite wird I²C angeschlossen um
+die Potistellungen und Tastenstati abzuholen. Die Potis sind 100k. Im pdf steht
+das KnowHow wie man das alles anpassen kann. Ich denke, Du bekommst das hin.
+
+Der I²C-Stecker ist gleichzeitig der ISP-Stecker. Beim ATtiny2313 (und einigen
+anderen auch) paßt das ganz wunderbar.
+
+Weil ich das damals aber nicht fertiggebaut habe, ist zusätzlich noch der UART
+in Betrieb. Wenn Du da eine entsprechende serielle Verbindung zu einem PC
+herstellst, kannst Du Z.B. mit Hyperterminal zuschauen was die Potis so machen.
+Im Schematic ist der Pegelwandler aber nicht enthalten!
+
+Bei mir geht der UART direkt auf's Funkmodem und steuert das ROV. Der meldet zu-
+rück wenn der Akku leer ist. Dieses zusätzliche Gemüse benötigst Du aber nicht.
+Um den UART abzuschalten ist ein Codeswitch zu ändern. Ich meine den im main.c
+gesehen zu haben; ist alles mit Kommentaren gespickt. Ob die Dir helfen, wird
+sich dann zeigen.
+
+Mein Programmierstil ist nicht der Beste, ich bin ja auch kein Profi. Sinnvoller
+wäre es gewesen die Teile alle in einzelne Files auszulagern, thematisch orga-
+nisiert. War mir damals zu aufwendig. Dafür wäre nämlich auch das Makefile
+anzupassen. Mit sowas dürftest Du Dich aber auskennen, oder?
+
+Falls es am I²C hakt: es könnte sein, daß da ein Bug drin ist. Die alte Lib ver-
+wende ich seit geraumer Zeit nicht mehr, ich habe eine Neue, die auch den Multi-
+Master+Slave beherrscht. Bei meinen Experimenten hat der I²C-Slavemode funktio-
+niert, damals und der Aufbau 'rennt' heute immer noch. Der steckt seit Jahren
+auf einem Experimentierfeld ...
+
+
+PS:
+CAD = EAGLE 4.15 Light (Inhalte auch als pdfs dabei - falls Du kein EAGLE hast)
+Compilersuite = WinAVR-20100110
+Alt aber mir reicht es - könnte Probleme mit den IRQ-Services geben, weil da ab
+und an mal die Syntax geändert wird => RTFM ;)

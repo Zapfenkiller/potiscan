@@ -1,0 +1,8 @@
+<b><u>Joystick_TWI</u></b><p>
+<ul>
+ATtiny2313 scans variable resistors of simple PC-type
+analog joystick. Also processes buttons. Due to joystick
+technical data the pots 100k nominal range. So this is
+a 4 channel single range version of PotiScan.<p>
+Interfaces to I²C<p>
+</ul>
